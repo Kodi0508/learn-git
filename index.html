@@ -50,6 +50,9 @@
                     //its value is calculated when it is called
                     return this.cart.length;
                 }
+            },
+                canAddToCart: function () {
+                    return this.product.availableInventory > this.cartItemCount;
             }
         });
     </script>
