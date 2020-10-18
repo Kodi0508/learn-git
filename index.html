@@ -45,7 +45,12 @@
                     this.cart.push(this.product.id);
                 }
             },
-  
+            computed: { // the Computed Property object 
+                cartItemCount: function () {
+                    //its value is calculated when it is called
+                    return this.cart.length;
+                }
+            }
         });
     </script>
 </body>
