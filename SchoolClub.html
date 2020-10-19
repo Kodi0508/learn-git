@@ -19,7 +19,10 @@
             <p>Location: {{product.location}}</p>
             <p>Price: {{product.price}}</p>
             <p>No.of Spaces: {{product.availableInventory}}</p>
-            <button v-on:click="addToCart">
+            <button v-on:click="addToCart" v-if='canAddToCart'>
+                Add to cart
+            </button>
+            <button disabled='disabled' v-else>
                 Add to cart
             </button>
         </main>
