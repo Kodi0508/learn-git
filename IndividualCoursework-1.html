@@ -115,6 +115,14 @@
                 cartItemCount() {
                     return this.cart.length;
                 },
+                sortedProducts() {
+                    
+                    if (this.picked === "")
+                    {
+                        return this.products.slice(0);
+                    }    
+                    
+                }
                 // canAddToCart(product) {
                 //     return product.availableInventory > this.cartItemCount;
                 // }
