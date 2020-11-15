@@ -165,6 +165,48 @@
             // created: function () {
             //     this.products = allProducts
             // },
+
+            methods: {
+    addToCart(product) {
+        this.cart.push(product);
+        // console.log('adding to cart', product.id)
+    },
+    deleteEvent(product) {
+        this.cart.splice(this.cart.indexOf(product),1);
+        this.showProduct= true; 
+    },
+    clearShoppingCart() {
+        webstore.cart = [];
+        this.showProduct = true;   
+     },
+    showCheckout() {
+        // console.log(this.showProduct);
+        this.showProduct = this.showProduct ? false : true;
+    },
+    submitForm() {
+        alert('Order submitted!')
+    },
+    canAddToCart(product) {
+        return product.availableInventory > this.cartCount(product);
+    },
+    cartCount(id) {
+        let count = 0;
+        for (let i = 0; i < this.cart.length; i++) {
+            if (this.cart[i] === id) {
+                count++;
+            }
+        }
+        return count;
+    },
+    onlyNumbers(event) {      
+        let keyCode = event.keyCode ? event.keyCode : event.which;
+        if (keyCode < 48 || keyCode > 58) {
+        event.preventDefault();
+        }
+    },
+    
+    
+},
             
             computed: {
                 cartItemCount() {
