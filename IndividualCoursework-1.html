@@ -12,6 +12,13 @@
     <div id="app">
         <header>
             <h1 style="font-family:verdana; text-align:center; color: blueviolet;" v-text="sitename" class=""></h1>
+            <div v-if="showProduct">
+
+                <button v-on:click='showCheckout' v-if="cartItemCount > 0" class="btn btn-success">
+                    {{cartItemCount}}
+                    <span class="fas fa-cart-plus"></span> Checkout
+                </button>
+                </div>
         </header>
         <main>
             <div v-if='showProduct' style="color:blue;">
