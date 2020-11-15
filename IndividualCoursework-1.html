@@ -14,7 +14,78 @@
             <h1 style="font-family:verdana; text-align:center; color: blueviolet;" v-text="sitename" class=""></h1>
         </header>
         <main>
-           
+            <div v-if='showProduct' style="color:blue;">
+                <p style="font-family:verdana;">Category</p>
+                    <div class="form-check">
+                        <input class="btn btn-primary" type="radio" value="title" name="TitleRadio" id="titleR" v-model="picked">
+                        <label class="badge badge-primary" for="titleRadio" style="font-family:verdana;">By Title</label>
+                    </div>
+                    <div class="form-check" style="left: 25px;">
+                        <input class="btn btn-primary" type="radio" value="descTitle" name="orderRadio" id="descT" v-model="picked">
+                        <label class="badge badge-danger" for="descT">↑↓</label>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input class="btn btn-primary" type="radio" value="price" name="PriceRadio" id="priceR" v-model="picked">
+                        <label class="badge badge-primary" for="priceRadio" style="font-family:verdana;">By Price</label>
+                    </div>
+                    <div class="form-check" style="left: 25px;">
+                        <input class="btn btn-primary" type="radio" value="descPrice" name="orderRadio" id="descP" v-model="picked">
+                        <label class="badge badge-danger" for="descP">↑↓</label>
+                    </div>
+            
+                    <div class="form-check">
+                        <input class="btn btn-primary" type="radio" value="location" name="LocationRadio" id="locationR" v-model="picked">
+                        <label class="badge badge-primary" for="locationRadio" style="font-family:verdana;">By Location</label>
+                    </div>
+                    <div class="form-check" style="left: 25px;">
+                        <input class="btn btn-primary" type="radio" value="descLocation" name="orderRadio" id="descL" v-model="picked">
+                        <label class="badge badge-danger" for="descL">↑↓</label>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input class="btn btn-primary" type="radio" value="availableInventory" name="SpaceRadio" id="spacesR" v-model="picked">
+                        <label class="badge badge-primary" for="spacesRadio" style="font-family:verdana;">By Spaces</label>
+                    </div>
+                    <div class="form-check" style="left: 25px;">
+                        <input class="btn btn-primary" type="radio" value="descSpace" name="orderRadio" id="descS" v-model="picked">
+                        <label class="badge badge-danger" for="descS">↑↓</label>
+                    </div>
+                    
+                    
+            
+                    
+                <div class="row">
+                <div class="col-md-4 ml-7" v-for="product in sortedProducts">
+                    <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                        <img v-bind:src="product.image" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title"  v-text="product.title"></h5>
+                          <p class="card-text">Location: {{product.location}}</p>
+                          <p class="card-text">Price: ${{product.price}}</p>
+                          <p class="card-text">Available stock: {{product.availableInventory - cartCount(product)}}</p>
+                          <button v-on:click='addToCart(product)' v-if='canAddToCart(product)' class="btn btn-info">Add to cart</button>
+            
+                    <button disabled="disabled" v-else class="btn btn-disabled">Add to cart</button>
+            
+                    <span v-if='product.availableInventory === cartCount(product)'>All out!</span>
+                    <span v-else-if="product.availableInventory - cartCount(product) < 5">
+                        Only {{product.availableInventory - cartCount(product)}} left!
+                    </span>
+                    <span v-else>Buy now!</span>
+                        </div>
+                      </div>
+            
+                    
+                    <!-- <button v-on:click="addToCart" 
+                    v-show='canAddToCart'>
+                    Add to cart
+                    </button> -->
+            
+                    
+                </div>
+            </div>
+            </div>  
 
             
          
