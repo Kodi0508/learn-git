@@ -87,6 +87,48 @@
             </div>
             </div>  
 
+            <div v-else style="color: blueviolet;">
+                <h2>Checkout</h2>
+            
+                <form>
+                    <div class="form-group">
+                    <p>
+            
+              
+                    <strong>Name:</strong>
+                    <!-- This input field is bound to 'firstName' in the 'order' object -->
+                    <input v-model.trim="order.name" class="form-control" type="text" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)" required />
+                </p>
+                </div>
+                <div class="form-group">
+                <p>
+                    <strong>Phone Number:</strong>
+                    <input v-model.number="order.number" class="form-control" type="tel" @keypress="onlyNumbers" pattern="^\d{10}$" title="Only 10 Digits Are Allowed" required />
+                </p>
+                </div>
+                
+            
+                
+            
+                <h2>Order Information</h2>
+                <p class="input-group-text, alert alert-primary">Name: {{order.name}}</p>
+                <p class="input-group-text, alert alert-primary">Phone Number: {{order.number}}</p>
+                <ul class="list-group list-group-flush">
+                    <li class="card text-white bg-secondary mb-3" v-for="product in cart" style="max-width: 21rem;">
+                        <img v-bind:src="product.image"><br>
+                        {{product.title}}<br>
+                        Price: ${{product.price}}<br>
+                        <button class="btn btn-danger" @click='deleteEvent(product)'>Remove</button>
+                    </li>
+                  </ul>
+                  <button v-on:click="clearShoppingCart" class="btn btn-danger">Clear Cart</button>
+                
+                
+                <button v-on:click="submitForm" class="btn btn-success">Place Order</button>
+            </form>
+            
+            </div>
+
             
          
         </main>
