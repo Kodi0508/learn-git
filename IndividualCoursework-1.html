@@ -19,6 +19,12 @@
                     <span class="fas fa-cart-plus"></span> Checkout
                 </button>
                 </div>
+                <div v-else>
+                    <button v-on:click='showCheckout' v-if="cartItemCount>0" class="btn btn-success">
+                        {{cartItemCount}}
+                        <span class="fas fa-shopping-cart"></span> Back To Shopping
+                        </button>
+                </div>
         </header>
         <main>
             <div v-if='showProduct' style="color:blue;">
