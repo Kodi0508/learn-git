@@ -167,46 +167,46 @@
             // },
 
             methods: {
-    addToCart(product) {
-        this.cart.push(product);
-        // console.log('adding to cart', product.id)
-    },
-    deleteEvent(product) {
-        this.cart.splice(this.cart.indexOf(product),1);
-        this.showProduct= true; 
-    },
-    clearShoppingCart() {
-        webstore.cart = [];
-        this.showProduct = true;   
-     },
-    showCheckout() {
-        // console.log(this.showProduct);
-        this.showProduct = this.showProduct ? false : true;
-    },
-    submitForm() {
-        alert('Order submitted!')
-    },
-    canAddToCart(product) {
-        return product.availableInventory > this.cartCount(product);
-    },
-    cartCount(id) {
-        let count = 0;
-        for (let i = 0; i < this.cart.length; i++) {
-            if (this.cart[i] === id) {
-                count++;
-            }
-        }
-        return count;
-    },
-    onlyNumbers(event) {      
-        let keyCode = event.keyCode ? event.keyCode : event.which;
-        if (keyCode < 48 || keyCode > 58) {
-        event.preventDefault();
-        }
-    },
-    
-    
-},
+                addToCart(product) {
+                    this.cart.push(product);
+                    // console.log('adding to cart', product.id)
+                },
+                deleteEvent(product) {
+                    this.cart.splice(this.cart.indexOf(product),1);
+                    this.showProduct= true; 
+                },
+                clearShoppingCart() {
+                    webstore.cart = [];
+                    this.showProduct = true;   
+                },
+                showCheckout() {
+                    // console.log(this.showProduct);
+                    this.showProduct = this.showProduct ? false : true;
+                },
+                submitForm() {
+                    alert('Order submitted!')
+                },
+                canAddToCart(product) {
+                    return product.availableInventory > this.cartCount(product);
+                },
+                cartCount(id) {
+                    let count = 0;
+                    for (let i = 0; i < this.cart.length; i++) {
+                        if (this.cart[i] === id) {
+                            count++;
+                        }
+                    }
+                    return count;
+                },
+                onlyNumbers(event) {      
+                    let keyCode = event.keyCode ? event.keyCode : event.which;
+                    if (keyCode < 48 || keyCode > 58) {
+                    event.preventDefault();
+                    }
+                },
+                
+                
+            },
             
             computed: {
                 cartItemCount() {
@@ -218,6 +218,38 @@
                     {
                         return this.products.slice(0);
                     }    
+                    if(this.picked === "title"){
+                    return products.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0)); 
+                }
+
+                    if(this.picked === "descTitle"){
+                        return products.sort((a, b) => a.title < b.title ? 1 : -1);
+                    }
+
+                    if(this.picked === "price"){
+                    return products.sort((a,b) => (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0)); 
+                    }
+
+                    if(this.picked === "descPrice"){
+                        return products.sort((a, b) => a.price < b.price ? 1 : -1);
+                    }
+
+                    if(this.picked === "location"){
+                    return products.sort((a,b) => (a.location > b.location) ? 1 : ((b.location > a.location) ? -1 : 0)); 
+                    }
+
+                    if(this.picked === "descLocation"){
+                        return products.sort((a, b) => a.location < b.location ? 1 : -1);
+                    }
+
+                    if(this.picked === "availableInventory"){
+                    return products.sort((a,b) => (a.availableInventory > b.availableInventory) ? 1 : ((b.availableInventory > a.availableInventory) ? -1 : 0)); 
+                    }
+
+                    if(this.picked === "descSpace"){
+                        return products.sort((a, b) => a.availableInventory < b.availableInventory ? 1 : -1);
+                    }
+
                     
                 }
                 // canAddToCart(product) {
